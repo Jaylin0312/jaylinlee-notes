@@ -1,1 +1,1 @@
-# jaylinlee-blog
+Source code for [jaylinleenotes.xyz](http://jaylinleenotes.xyz/) Built with [Astro](https://astro.build) with love
