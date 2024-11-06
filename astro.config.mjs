@@ -22,6 +22,6 @@ export default defineConfig({
   site: SITE_URL,
   prefetch: true,
   integrations: [tailwind(), mdx()],
-  output: "server",
+  output: "hybrid",
   adapter: vercel(),
 });
