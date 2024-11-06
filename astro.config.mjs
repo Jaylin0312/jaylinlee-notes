@@ -2,10 +2,11 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
+import vercel from "@astrojs/vercel/serverless";
 
 const SERVER_PORT = 3000;
 const LOCALHOST_URL = `http://localhost:${SERVER_PORT}`;
-const LIVE_URL = "https://.dev/";
+const LIVE_URL = "https://jaylinleenotes.xyz/";
 const SCRIPT = process.env.npm_lifecycle_script || "";
 const isBuild = SCRIPT.includes("astro build");
 let SITE_URL = LOCALHOST_URL;
@@ -21,4 +22,6 @@ export default defineConfig({
   site: SITE_URL,
   prefetch: true,
   integrations: [tailwind(), mdx()],
+  output: "server",
+  adapter: vercel(),
 });
