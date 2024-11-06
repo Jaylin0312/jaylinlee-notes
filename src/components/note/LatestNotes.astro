@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+import Note from "./Note.astro";
+import config from "../../config.ts";
+
+const { postLimit = config.LATEST_POSTS, skipPost = "" } = Astro.props;
+
+const posts = (
+  await getCollection("note", ({ data }) => {
+    return !(data.title == skipPost);
+  })
+)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, postLimit);
+---
+
+<section
+  class="container mx-auto max-w-screen-lg px-7 py-10 mb-10 prose lg:prose-xl prose-headings:font-space prose-headings:mt-5 prose-headings:text-dark prose-headings:font-bold lg:prose-h1:text-7xl prose-h1:mt-0 prose-heading:transition-all prose-heading:duration-300 prose-p:text-primary/50 dark:prose-p:text-white/70 prose-p:mb-0 prose-p:transition-all prose-p:duration-300 prose-img:mt-0 prose-img:mb-0 dark:prose-headings:text-white"
+>
+  <h2 class="text-right text-2xl mb-14">
+    <span class="gradient-underline"><span>Latest Notes</span></span>
+  </h2>
+  {
+    posts.map((post, index) => {
+      const isLast = index === posts.length - 1;
+      return <Note postData={post} num={index} isLast={isLast} />;
+    })
+  }
+</section>

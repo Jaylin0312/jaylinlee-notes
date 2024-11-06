@@ -1,0 +1,37 @@
+<button
+  id="menu_toggle"
+  class="block md:hidden text-white"
+  type="button"
+  aria-controls="navbar-main"
+  aria-expanded="false"
+  aria-label="Toggle navigation"
+>
+  <svg
+    class="w-8 h-auto fill-dark stroke-dark transition-all duration-300 hover:fill-accent hover:stroke-accent dark:fill-accent dark:stroke-accent dark:hover:fill-secondary dark:hover:stroke-secondary"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    ><path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M4 6h16M4 12h16M4 18h16"></path></svg
+  >
+</button>
+
+<script>
+  const menuToggle = () => {
+    const button = document.querySelector("#menu_toggle");
+    const nav = document.querySelector("#navigation_wrapper");
+
+    button!.addEventListener("click", function () {
+      nav!.classList.toggle("hidden");
+      document.documentElement.classList.toggle("overflow-hidden");
+    });
+  };
+
+  menuToggle();
+  // Runs on view transitions navigation
+  document.addEventListener("astro:after-swap", menuToggle);
+</script>

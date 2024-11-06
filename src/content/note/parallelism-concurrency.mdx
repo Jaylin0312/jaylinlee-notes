@@ -1,0 +1,17 @@
+---
+title: "Parallelism vs Concurrency"
+pubDate: 2024-10-24
+intro: The difference between parallelism and concurrency can be rather confusing, including how it is related to process, thread, coroutine etc… But there is an easier way to remember the difference.
+image: "@/images/note/parallelism-concurrency.jpg"
+tag: Technology
+
+---
+The difference between parallelism and concurrency can be rather confusing, including how it is related to process, thread, coroutine etc… But there is an easier way to remember the difference.
+
+`Concurrency` refers to the ability of the system to handle multiple tasks or operations at the same time (concurrently), but not necessarily executing them simultaneously. It involves managing multiple tasks by interleaving their execution (tasks may pause and resume over time). This is typically achieved using mechanisms like threads (multiple threads on a single-core processor) or coroutines
+
+`Parallelism` refers to actual simultaneous execution of multiple tasks at the same time. The tasks are split up into smaller subtasks which can be processed in parallel. This can only happen when the system has multiple processing units (such as in multi-core CPUs or distributed systems). Each task is executed by a different processing unit at the same time.
+
+- Concurrency can be achieved using multiple threads even on a single-core processor. The system switches between threads, giving the illusion of tasks happening simultaneously.
+
+- Parallelism can only be achieved with multiple processing units, such as multi-core processors, where each core handles a separate task at the same time.

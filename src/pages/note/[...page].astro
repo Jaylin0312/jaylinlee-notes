@@ -1,0 +1,68 @@
+---
+import { getCollection } from "astro:content";
+import config from "../../config.ts";
+import Base from "../../layouts/Base.astro";
+import Note from "../../components/note/Note.astro";
+
+interface Note {
+  title: string;
+  pubDate: Date;
+}
+
+interface PageUrl {
+  prev?: string;
+  next?: string;
+}
+
+interface Page {
+  data: Note[];
+  url: PageUrl;
+}
+
+export async function getStaticPaths({ paginate }: any) {
+  const noteEntries = (
+    await getCollection("note", () => {
+      return true;
+    })
+  ).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+  return paginate(noteEntries, { pageSize: config.POSTS_PER_PAGE });
+}
+
+const { page } = Astro.props as { page: Page };
+---
+
+<Base>
+  <section class="container mx-auto max-w-screen-lg px-7 py-10">
+    {
+      page.data.map((post, index) => {
+        const isLast = index === page.data.length - 1;
+        return (
+          <Note postData={post} postType={"note"} isLast={isLast} num={index} />
+        );
+      })
+    }
+    <div class="flex flex-row justify-center gap-7">
+      {
+        page.url.prev ? (
+          <a
+            href={page.url.prev}
+            class="text-[16px] bg-transparent border-pacamara-secondary border-[1px] leading-none rounded-full py-3 px-5 text-pacamara-secondary hover:bg-pacamara-accent hover:border-pacamara-accent hover:text-pacamara-white transition-all duration-300"
+          >
+            Previous
+          </a>
+        ) : null
+      }
+      {
+        page.url.next ? (
+          <a
+            href={page.url.next}
+            class="text-[16px] bg-transparent border-pacamara-secondary border-[1px] leading-none rounded-full py-3 px-5 text-pacamara-secondary hover:bg-pacamara-accent hover:border-pacamara-accent hover:text-pacamara-white transition-all duration-300"
+          >
+            Next
+          </a>
+        ) : null
+      }
+    </div>
+  </section>
+</Base>

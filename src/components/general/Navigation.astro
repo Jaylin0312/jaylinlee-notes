@@ -1,0 +1,22 @@
+---
+import config from "../../config.ts";
+---
+
+<nav>
+  <ul
+    class="list-none text-[14px] font-normal flex flex-initial flex-col md:flex-row gap-5"
+  >
+    {
+      Object.values(config.NAV).map((link) => (
+        <li>
+          <a
+            href={link.REL_PATH}
+            class="opacity-60 text-primary hover:opacity-100 hover:text-accent transition-all duration-300 dark:text-white dark:hover:text-accent"
+          >
+            {link.NAME}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

@@ -1,0 +1,35 @@
+---
+import { Image } from "astro:assets";
+import config from "@/config.ts";
+import locale from "@/locale";
+import profileImage from "@/images/profile.jpg";
+---
+
+<section
+  class="container mx-auto max-w-screen-lg px-7 py-10 content-center prose lg:prose-xl prose-headings:font-space prose-headings:mt-5 prose-headings:text-dark prose-headings:font-bold lg:prose-h1:text-7xl prose-h1:mt-0 prose-heading:transition-all prose-heading:duration-300 prose-p:text-primary/50 dark:prose-p:text-white/70 prose-p:mb-0 prose-p:transition-all prose-p:duration-300 prose-img:mt-0 prose-img:mb-0 dark:prose-headings:text-white"
+>
+  <div class="flex flex-wrap-reverse md:flex-nowrap">
+    <div class="flex flex-col md:mr-10">
+      <h2>
+        <span class="gradient-underline">
+          <span>{locale.intro.INTRO.TITLE} &#128075;</span>
+        </span>
+      </h2>
+      <span class="text-[14px] md:text-[18px] text-primary dark:text-white">
+        {locale.intro.INTRO.DESCRIPTION1}
+      </span>
+      <span class="text-[14px] md:text-[18px] text-primary dark:text-white">
+        {locale.intro.INTRO.DESCRIPTION2}
+      </span>
+    </div>
+    <Image
+      src={profileImage}
+      alt={config.AUTHOR}
+      width={300}
+      loading="eager"
+      decoding="sync"
+      class="relative flex-grow rounded-2xl image-shine md:max-w-[300px]"
+    />
+  </div>
+</section>
+<div class="w-full h-[1px] overflow-hidden gradient-line"></div>
