@@ -15,12 +15,16 @@ import profileImage from "@/images/profile.jpg";
           <span>{locale.intro.INTRO.TITLE} &#128075;</span>
         </span>
       </h2>
-      <span class="text-[14px] md:text-[18px] text-primary dark:text-white">
-        {locale.intro.INTRO.DESCRIPTION1}
-      </span>
-      <span class="text-[14px] md:text-[18px] text-primary dark:text-white">
-        {locale.intro.INTRO.DESCRIPTION2}
-      </span>
+      <div
+        class="text-primary/70 transition-all duration-300 dark:text-white/70"
+      >
+        <span class="text-[14px] md:text-[18px]">
+          {locale.intro.INTRO.DESCRIPTION1}
+        </span>
+        <span class="text-[14px] md:text-[18px]">
+          {locale.intro.INTRO.DESCRIPTION2}
+        </span>
+      </div>
     </div>
     <Image
       src={profileImage}
@@ -32,4 +36,4 @@ import profileImage from "@/images/profile.jpg";
     />
   </div>
 </section>
-<hr class="gradient-line border-0 w-full h-[2px] overflow-hidden"/>
+<hr class="gradient-line border-0 w-full h-[2px] overflow-hidden" />
