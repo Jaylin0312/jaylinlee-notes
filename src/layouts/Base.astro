@@ -2,6 +2,8 @@
 import { ViewTransitions } from "astro:transitions";
 import Header from "../components/general/Header.astro";
 import Footer from "../components/general/Footer.astro";
+import { SEO } from "astro-seo";
+import config from "@/config";
 import "../css/style.css";
 ---
 
@@ -68,8 +70,49 @@ import "../css/style.css";
       crossorigin
     />
     <ViewTransitions />
-  </head>
 
+    <SEO
+      title={config.TITLE_SUFFIX}
+      description=`${config.DESCRIPTION}`
+      ,
+      openGraph={{
+        basic: {
+          title: `${config.TITLE_SUFFIX}`,
+          type: "website",
+          image: "/favicon/cover.png",
+          url: "https://jaylinleenotes.xyz",
+        },
+      }}
+      extend={{
+        link: [
+          { rel: "icon", href: "/favicon/favicon.ico" },
+          { rel: "canonical", href: "https://jaylinleenotes.xyz" },
+        ],
+        meta: [
+          { name: "author", content: "Jaylin Lee Jie Ling" },
+          { name: "robots", content: "index, follow" },
+          {
+            name: "keywords",
+            content: "Tech notes, programming, Jaylin Lee, GitHub",
+          },
+          {
+            property: "og:image",
+            content: "/favicon/cover.png",
+          },
+          { property: "og:title", content: "Jaylin Lee's Tech Notes" },
+          {
+            property: "og:description",
+            content:
+              "A curated collection of tech knowledge from Jaylin Lee, designed to support new learners and enthusiasts.",
+          },
+          {
+            name: "github:site",
+            content: "https://github.com/Jaylin0312",
+          },
+        ],
+      }}
+    />
+  </head>
   <body class="font-inter transition-all duration-300 bg-white dark:bg-dark">
     <Header />
     <slot />
