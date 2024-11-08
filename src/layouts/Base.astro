@@ -114,9 +114,13 @@ import "../css/style.css";
       }}
     />
   </head>
-  <body class="font-inter transition-all duration-300 bg-white dark:bg-dark">
+  <body
+    class="flex flex-col min-h-screen font-inter transition-all duration-300 bg-white dark:bg-dark"
+  >
     <Header />
-    <slot />
+    <main class="flex-grow">
+      <slot />
+    </main>
     <Footer />
   </body>
 </html>
