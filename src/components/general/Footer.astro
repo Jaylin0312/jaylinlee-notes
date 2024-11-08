@@ -1,3 +1,19 @@
+---
+import locale from "@/locale";
+import config from "@/config";
+const poweredByFooterHtmlString = locale.footer.POWERED_BY.TEXT.replace(
+  "{{ framework }}",
+  locale.footer.POWERED_BY.FRAMEWORK
+).replace("{{ host }}", locale.footer.POWERED_BY.HOST);
+const authorFooterHtmlString = locale.footer.CREDITS.replace(
+  "{{ icon }}",
+  `<span class="text-accent">♥</span>` // Adjust classes as needed
+).replace(
+  "{{ author }}",
+  `<a href="https://jaylinlee.dev/" target="_blank">${config.AUTHOR}</a>`
+);
+---
+
 <hr class="border-0 w-full h-[2px] overflow-hidden gradient-line" />
 <div
   class="py-14 transition-all duration-300 bg-gradient-to-r from-secondary/10 to-accent/10 dark:bg-gradient-to-r dark:from-accent/[2%] dark:to-secondary/[5%]"
@@ -7,7 +23,7 @@
   >
     <div class="text-[14px] font-normal flex gap-x-9">
       <span class="text-dark opacity-60 transition duration-300 dark:text-white"
-        >Built with Astro deployed on Vercel</span
+        >${poweredByFooterHtmlString}</span
       >
     </div>
     <div
@@ -15,10 +31,8 @@
     >
       <span
         class="text-[14px] text-dark opacity-60 transition duration-300 dark:text-white"
-      >
-        Made with <span class="text-accent">♥</span> by
-        <a href="https://jaylinlee.dev/" target="_blank">Jaylin Lee</a>
-      </span>
+        set:html={authorFooterHtmlString}
+      />
     </div>
   </footer>
 </div>
