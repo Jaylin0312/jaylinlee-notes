@@ -6,4 +6,5 @@ export default {
     DESCRIPTION2:
       "Paying it forward has always been my guiding principle, and this blog is a reflection of that. I hope my notes offer even a bit of help to fellow beginners like me :))",
   },
+  TELEGRAM: "More random notes can be found at my {{ telegram channel }}",
 };
