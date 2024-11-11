@@ -3,9 +3,9 @@ import { Image } from "astro:assets";
 import config from "@/config.ts";
 import locale from "@/locale";
 import profileImage from "@/images/profile.jpg";
-const teleHtmlString = locale.intro.TELEGRAM.replace(
-  "{{ telegram channel }}",
-  `<a href="${config.SOCIAL.TELEGRAM}" target="_blank" class="underline decoration-wavy decoration-secondary hover:decoration-accent text-primary/70 transition-all duration-300 dark:text-white/70">telegram channel</a>`
+const teleHtmlString = locale.intro.NUGGETS.replace(
+  "{{ jaylinleenuggets }}",
+  `<a href="${config.SOCIAL.NUGGETS}" target="_blank" class="underline decoration-wavy decoration-secondary hover:decoration-accent text-primary/70 transition-all duration-300 dark:text-white/70">jaylinleenuggets</a>`
 );
 ---
 

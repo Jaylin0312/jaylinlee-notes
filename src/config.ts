@@ -14,7 +14,7 @@ export default {
     GITHUB: "http://github.com/Jaylin0312",
     TWITTER: "https://x.com/JAYLIN0312",
     EMAIL: "mailto:jielinglee01@gmail.com",
-    TELEGRAM: "https://t.me/+8YVTwYCbdrU2Yjll"
+    NUGGETS: "https://jaylinleenuggets.vercel.app",
   },
   NAV: {
     HOME: {
