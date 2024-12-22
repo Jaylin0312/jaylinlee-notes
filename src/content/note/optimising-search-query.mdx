@@ -1,0 +1,72 @@
+---
+title: "Optimising Search Query"
+pubDate: 2024-12-22
+intro: How would you optimise API calls for a search box that fetches results in real-time as the user types?
+image: "@/images/note/optimising-search-query.png"
+tag: Technology
+
+---
+I recently came across a LinkedIn post by an interviewer who mentioned that he enjoys asking candidates the following question. I thought it would be beneficial to explore possible answers and dive deeper into the topic
+
+### Question
+
+How would you optimise API calls for a search box that fetches results in real-time as the user types?
+
+### Techniques
+
+#### Debouncing
+    
+Debouncing is a technique used to control the frequency at which time-consuming tasks, in this case the API calls, are triggered. It works by "batching" all operations requested within a specified interval into a single invocation, ensuring that only one call is made despite multiple triggers. In the case of a search functionality, debouncing ensures that an API request is only triggered once the user pauses typing, rather than on every keystroke
+    
+For instance:
+    
+1. If the `search` function is debounced with a 10-millisecond delay, the system will wait for a 10-millisecond gap between function calls before triggering an action
+        
+2. The first call to the `search` function, which occurs after an initial user input, is known as the *leading edge*. This is the first invocation in the sequence
+        
+3. For every subsequent call to the `search` function that occurs within 10 milliseconds from the previous call, those calls are considered part of the same "batch." In other words, the system will ignore these intermediate calls, as they are likely part of a rapid sequence of user inputs (such as typing)
+        
+4. After 10 milliseconds have passed from the last invocation of the `search` function (without any further input from the user), and no other calls have been made, the system triggers the final call, which is known as the *trailing edge*
+        
+#### Throttling
+    
+Throttling is a technique used to control the rate at which a function is executed by limiting the number of times an operation can be performed over a specific time period. Unlike debouncing, which groups multiple rapid function calls into one, throttling ensures that a function is executed at a steady, controlled rate, regardless of how frequently the event triggering the function occurs.  In the case of a search functionality, throttling ensures that the number of API calls triggered is limited as the user types
+    
+For instance:
+    
+1. The first call to the `search` function is known as the *leading edge*. This is the initial invocation of the function when the user first starts typing
+        
+2. For every subsequent call to the `search` function that occurs within the throttle window (e.g., 10 milliseconds from the first call), these calls are ignored or grouped into the same "batch" as the first call
+        
+3. After the throttle period (e.g., 10 milliseconds) has elapsed from the first call to `search`, we have reached the trailing edge
+        
+#### Caching Results
+    
+The Use cached results option reuses results from a previous run of the same query unless the tables being queried have changed. Using cached results is only beneficial for repeated queries, and it has no effect on new queries
+    
+#### Character Thresholds
+    
+Limiting the number of characters required before making an API call ensures that the request is only triggered after the user has entered a sufficient amount of input. This helps avoid unnecessary API calls for incomplete or overly frequent requests
+    
+#### Backend Optimisation
+    
+Backend optimisation can be achieved through strategies such as indexing search fields and optimising queries. Indexing improves search efficiency by allowing faster data retrieval, while query optimisation enhances performance by refining how queries are executed, reducing unnecessary processing and improving response times
+    
+
+### Analyse The Requirements
+
+- What is the expected user behavior (e.g., typing speed, average query length)?
+
+- What are the API constraints (e.g., rate limits, response times)?
+
+- How critical is real-time feedback for the user experience?
+
+### Possible Answers
+
+- Debouncing is ideal for reducing frequent calls in rapid sequences
+
+- Throttling works better for steady call intervals, especially in high-traffic applications
+
+- Decide based on user behaviour - If users tend to pause between inputs, debouncing works better. If they type continuously, throttling may be more suitable
+
+- Combine debouncing with caching for the best results
